@@ -4,32 +4,24 @@ import 'react-calendar/dist/Calendar.css';
 import "./../style.css";
 
 function DatePicker() {
-    const [date, setDate] = useState(new Date());
-    const [display, setDisplay] = useState(false)
-
+    const [date, setDate] = useState(new Date()); 
+    const [displayCalendar, setDisplay] = useState(false)
 
     return(
         <div className="datepicker-form">
-            <input type="text" className="datepicker-form-input" value={date.toLocaleDateString()} onClick={(e)=> setDisplay(true)}  onChange={(e) => e.target.value = date.toLocaleDateString()} />
-            {display == true ? <Calendar className="test" onChange={(e)=> {
-                setDate(e)
-                setDisplay(false)
-            }} />: ""  } 
+            {/* input ou es affiché la date, au clic j'affiche le calendrier */}
+            <input type="text" className="datepicker-form-input" value={date.toLocaleDateString()} onClick={(e)=> setDisplay(true)}  onChange={(e) => e.target.value = date.toLocaleDateString()} /> 
+            
+            {/* j'affiche le calendrier si le state est a true */}
+            {displayCalendar == true ? <Calendar onChange={(e)=> {setDate(e)}} />: ""  } 
+            
+            {/* j'affiche le bouton annuler si le state est a true */}
+            {displayCalendar == true ? <button onClick={() => setDisplay(false)}>Annuler</button> : ""}
+            
+            {/* j'affiche le bouton réinitialiser si le state est a true */}
+            {displayCalendar == true ? <button onClick={() => setDate(new Date())}>Réinitialiser</button> : ""}
         </div>
     )
 }
-
-// const datePicker = ({ type = "date", label, value, onChange }) => (
-//   <div className="datepicker-form">
-//       <Calendar />
-//     {/* {label && <label className="simple-text-label">{label}</label>}
-//     <input
-//       type={type}
-//       className="datepicker-input"
-//       value={value}
-//       onChange={e => onChange && onChange(e.target.value)}
-//     /> */}
-//   </div>
-// );
 
 export default DatePicker;

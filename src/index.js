@@ -4,14 +4,13 @@ import ReactDOM from "react-dom";
 import TextInput from "./lib/TextInput"
 import DatePicker from "./lib/Datepicker"
 
-const App = () => (
-    <div style={{width: 640, margin: "15px auto"}}>
-        <h1>Hello React</h1> 
-        <DatePicker />
-    </div>
-)
+// const App = () => (
+//     <div style={{width: 640, margin: "15px auto"}}>
+//         <DatePicker />
+//     </div>
+// )
 
-render(<App/>, document.getElementById("root"));
+render(<DatePicker/>, document.getElementById("root"));
 
 
 // ReactDOM.render(

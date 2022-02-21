@@ -1,25 +1,38 @@
 import React,  { useState } from "react";
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
-import "./../style.css";
+import "./style.css";
 
-function DatePicker() {
-    const [date, setDate] = useState(new Date()); 
-    const [displayCalendar, setDisplay] = useState(false)
-
+/**
+ * @return datepicker
+ * @param {string} idInput - matches id of the input
+ * @param {date or nothing} dateInput - value of the input
+ * @param {function} updateDate - update value of the input
+ * @const displayCalendar - allow display the calendar
+ */ 
+function DatePicker({idInput, dateInput, updateDate }) {
+    const [displayCalendar, setDisplayCalendar] = useState(false)
+  
     return(
-        <div className="datepicker-form">
+        <div className="datepicker-form" tabIndex="0">
             {/* input ou es affiché la date, au clic j'affiche le calendrier */}
-            <input type="text" className="datepicker-form-input" value={date.toLocaleDateString()} onClick={(e)=> setDisplay(true)}  onChange={(e) => e.target.value = date.toLocaleDateString()} /> 
-            
-            {/* j'affiche le calendrier si le state est a true */}
-            {displayCalendar == true ? <Calendar onChange={(e)=> {setDate(e)}} />: ""  } 
-            
-            {/* j'affiche le bouton annuler si le state est a true */}
-            {displayCalendar == true ? <button onClick={() => setDisplay(false)}>Annuler</button> : ""}
-            
-            {/* j'affiche le bouton réinitialiser si le state est a true */}
-            {displayCalendar == true ? <button onClick={() => setDate(new Date())}>Réinitialiser</button> : ""}
+            <input type="text" id={idInput} className="datepicker-input" value={dateInput !== "" ? dateInput.toLocaleDateString(): ""} onChange={() => dateInput.toLocaleDateString()}
+                onFocus={(e)=> {
+                    setDisplayCalendar(true)
+                }}
+            /> 
+            {displayCalendar == true ? 
+                <div className="datepicker-calendar-buttons">
+                        <button className="datepicker-calendar-buttons_close" onClick={() => setDisplayCalendar(false)}>X</button>
+                </div>
+            :  null}
+            {displayCalendar == true ? 
+                <Calendar onChange={(e)=> { 
+                    updateDate(e) 
+                    setDisplayCalendar(false)
+                } 
+                }/>
+            :  null}
         </div>
     )
 }

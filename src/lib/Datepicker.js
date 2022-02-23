@@ -21,6 +21,7 @@ function DatePicker({idInput, dateInput, updateDate }) {
                     setDisplayCalendar(true)
                 }}
             /> 
+            {/* si displayCalendar es à true alors j'affiche les boutons et le calendrier */}
             {displayCalendar == true ? 
                 <div className="datepicker-calendar-buttons">
                         <button className="datepicker-calendar-buttons_close" onClick={() => setDisplayCalendar(false)}>X</button>

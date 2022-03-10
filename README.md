@@ -13,4 +13,4 @@ import the component
 
 ## step 3 :
 use the component in your code
-![image](https://github.com/SarahHenriette/EliseRousseau_14_02022022_library/blob/main/screenshot2.jpg)
+![image](https://github.com/SarahHenriette/EliseRousseau_14_02022022_library/blob/main/screenshot_2.jpg)
